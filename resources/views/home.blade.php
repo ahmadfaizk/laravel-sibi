@@ -1,23 +1,72 @@
-@extends('layouts.app')
+<x-app-layout>
+    <div class="row">
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-primary">
+                <div class="inner">
+                    <h3>125</h3>
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
-
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
+                    <p><h4>Siswa Aktif</h4></p>
                 </div>
+                <div class="icon">
+                    <i class="fas fa-user"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                    Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i>
+                </a>
             </div>
         </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-success">
+                <div class="inner">
+                    <h3>812</h3>
+
+                    <p><h4>Alumni</h4></p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-user-graduate"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                    Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-warning">
+                <div class="inner">
+                    <h3>6</h3>
+
+                    <p><h4>Kelas</h4></p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-layer-group"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                    Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- ./col -->
+        <div class="col-lg-3 col-6">
+            <!-- small card -->
+            <div class="small-box bg-danger">
+                <div class="inner">
+                    <h3>8</h3>
+
+                    <p><h4>Tahun Ajaran</h4></p>
+                </div>
+                <div class="icon">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <a href="#" class="small-box-footer">
+                    Lihat Selengkapnya <i class="fas fa-arrow-circle-right"></i>
+                </a>
+            </div>
+        </div>
+        <!-- ./col -->
     </div>
-</div>
-@endsection
+</x-app-layout>
