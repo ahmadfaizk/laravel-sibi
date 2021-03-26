@@ -1,4 +1,10 @@
 <x-app-layout>
+    <x-slot name="title">
+        <h1 class="m-0">Dashboard</h1>
+    </x-slot>
+    <x-slot name="breadcrumb">
+        <x-breadcrumb />
+    </x-slot>
     <div class="row">
         <div class="col-lg-3 col-6">
             <!-- small card -->
@@ -6,7 +12,9 @@
                 <div class="inner">
                     <h3>125</h3>
 
-                    <p><h4>Siswa Aktif</h4></p>
+                    <p>
+                        <h4>Siswa Aktif</h4>
+                    </p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user"></i>
@@ -23,7 +31,9 @@
                 <div class="inner">
                     <h3>812</h3>
 
-                    <p><h4>Alumni</h4></p>
+                    <p>
+                        <h4>Alumni</h4>
+                    </p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-user-graduate"></i>
@@ -40,7 +50,9 @@
                 <div class="inner">
                     <h3>6</h3>
 
-                    <p><h4>Kelas</h4></p>
+                    <p>
+                        <h4>Kelas</h4>
+                    </p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-layer-group"></i>
@@ -57,7 +69,9 @@
                 <div class="inner">
                     <h3>8</h3>
 
-                    <p><h4>Tahun Ajaran</h4></p>
+                    <p>
+                        <h4>Tahun Ajaran</h4>
+                    </p>
                 </div>
                 <div class="icon">
                     <i class="fas fa-calendar-alt"></i>
