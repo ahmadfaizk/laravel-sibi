@@ -57,7 +57,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('kelas') }}" class="nav-link">
                                 <i class="fas fa-layer-group nav-icon"></i>
                                 <p>Kelas</p>
                             </a>
