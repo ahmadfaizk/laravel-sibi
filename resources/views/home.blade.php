@@ -1,7 +1,5 @@
 <x-app-layout>
-    <x-slot name="title">
-        <h1 class="m-0">Dashboard</h1>
-    </x-slot>
+    <x-slot name="title">Dashboard</x-slot>
     <x-slot name="breadcrumb">
         <x-breadcrumb />
     </x-slot>

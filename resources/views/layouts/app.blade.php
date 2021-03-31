@@ -8,7 +8,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SiBi | Home</title>
+    <title>SiBi | {{ isset($title) ? $title : ''  }}</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -17,7 +17,9 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/sweetalert2.min.css') }}">
     <livewire:styles />
+    @stack('styles')
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -37,7 +39,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
                 <div class="container-fluid">
                     <div class="row mb-2">
                         <div class="col-sm-6">
-                            {{ isset($title) ? $title : ''  }}
+                            <h1 class="m-0">{{ isset($title) ? $title : ''  }}</h1>
                         </div><!-- /.col -->
                         <div class="col-sm-6">
                             {{ isset($breadcrumb) ? $breadcrumb : '' }}
@@ -58,16 +60,6 @@ scratch. This page gets rid of all links and provides the needed markup only.
         </div>
         <!-- /.content-wrapper -->
 
-        <!-- Control Sidebar -->
-        {{-- <aside class="control-sidebar control-sidebar-dark">
-            <!-- Control sidebar content goes here -->
-            <div class="p-3">
-                <h5>Title</h5>
-                <p>Sidebar content</p>
-            </div>
-        </aside> --}}
-        <!-- /.control-sidebar -->
-
         <!-- Main Footer -->
         @include('layouts.footer')
     </div>
@@ -81,7 +73,15 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
+    <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
     <livewire:scripts />
+    <script>
+        window.livewire.on('showToast', function (type, title, message) {
+            Swal.fire(title, message, type);
+        })
+
+    </script>
+    @stack('scripts')
 </body>
 
 </html>

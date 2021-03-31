@@ -36,12 +36,12 @@
                 <!-- Add icons to the links using the .nav-icon class
        with font-awesome or any other icon font library -->
                 <li class="nav-item">
-                    <a href="#" class="nav-link active">
+                    <a href="{{ route('home') }}" class="nav-link {{ set_active('home') }}">
                         <i class="nav-icon fas fa-home"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item menu-open">
+                <li class="nav-item {{ set_active(['kelas'], 'menu-open') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-database"></i>
                         <p>
@@ -57,7 +57,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="{{ route('kelas') }}" class="nav-link">
+                            <a href="{{ route('kelas') }}" class="nav-link {{ set_active('kelas') }}">
                                 <i class="fas fa-layer-group nav-icon"></i>
                                 <p>Kelas</p>
                             </a>
