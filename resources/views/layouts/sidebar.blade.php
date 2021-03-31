@@ -41,7 +41,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item {{ set_active(['kelas'], 'menu-open') }}">
+                <li class="nav-item {{ set_active(['kelas', 'siswa', 'tahun-ajaran'], 'menu-open') }}">
                     <a href="#" class="nav-link">
                         <i class="nav-icon fas fa-database"></i>
                         <p>
@@ -51,7 +51,7 @@
                     </a>
                     <ul class="nav nav-treeview">
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('tahun-ajaran') }}" class="nav-link {{ set_active('tahun-ajaran') }}">
                                 <i class="fas fa-calendar-alt nav-icon"></i>
                                 <p>Tahun Ajaran</p>
                             </a>
@@ -63,7 +63,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="{{ route('siswa') }}" class="nav-link {{ set_active('siswa') }}">
                                 <i class="fas fa-users nav-icon"></i>
                                 <p>Siswa</p>
                             </a>

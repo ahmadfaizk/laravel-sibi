@@ -1,7 +1,7 @@
 <div>
     <div class="card">
         <div class="card-header text-right">
-            <button wire:click="create" class="btn btn-info"><span class="fas fa-plus mr-2"></span>Kelas
+            <button wire:click="create" class="btn btn-info"><span class="fas fa-plus mr-2"></span>Tahun Ajaran
                 Baru</button>
         </div>
         <div class="card-body">
@@ -9,7 +9,6 @@
                 <x-slot name="header">
                     <th>No.</th>
                     <th>Nama</th>
-                    <th>Tingkat</th>
                     <th>Dibuat Pada</th>
                     <th>Aksi</th>
                 </x-slot>
@@ -17,7 +16,6 @@
                 <tr>
                     <td>{{ ($items->currentPage()-1) * $items->perPage() + $loop->iteration }}</td>
                     <td>{{ $item->nama }}</td>
-                    <td>{{ $item->tingkat }}</td>
                     <td>{{ $item->created_at }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Action button">
@@ -33,13 +31,9 @@
                 @endforeach
             </x-data-table>
         </div>
-        {{-- <div class="card-footer">
-            <button wire:click="$emit('importExcel')" type="button" class="btn btn-outline-info" data-toggle="modal" data-target="#import-excel"><i class="fa fa-file-upload"> Import</i></button>
-            <button wire:click="export" type="button" class="btn btn-outline-info"><i class="fa fa-file-download"> Export</i></button>
-        </div> --}}
     </div>
-    @include('livewire.kelas.form')
-    <x-modal-delete model="Kelas" :name="$nama" />
+    @include('livewire.tahun-ajaran.form')
+    <x-modal-delete model="Tahun Ajaran" :name="$nama" />
 </div>
 
 @push('scripts')

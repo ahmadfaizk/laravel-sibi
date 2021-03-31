@@ -15,7 +15,7 @@ class CreateMTahunAjaranTable extends Migration
     {
         Schema::create('m_tahun_ajaran', function (Blueprint $table) {
             $table->id();
-            $table->string('nama')->nullable();
+            //$table->string('nama')->nullable();
             $table->year('tahun_awal');
             $table->year('tahun_akhir');
             $table->timestamps();

@@ -2,11 +2,14 @@
 
 namespace App\Http\Livewire;
 
+use App\Http\Livewire\Traits\WithAlert;
 use App\Models\Kelas as KelasModel;
 use Livewire\Component;
 
 class Kelas extends Component
 {
+    use WithAlert;
+
     public $kelas;
     public $nama;
     public $tingkat;
@@ -23,19 +26,25 @@ class Kelas extends Component
 
     public function render(KelasModel $kelas)
     {
+        $items = $kelas->when($this->search, function ($query, $value) {
+            return $query->where('nama', 'LIKE', '%' . $value . '%');
+        });
+
         return view('livewire.kelas.index', [
-            'items' => $kelas->paginate($this->perPage)
+            'items' => $items->paginate($this->perPage)
         ]);
     }
 
-    public function create() {
+    public function create()
+    {
         $this->formTitle = 'Buat Kelas Baru';
         $this->resetInputFields();
         $this->isUpdate = false;
         $this->emit('formModal');
     }
 
-    public function edit(KelasModel $kelas) {
+    public function edit(KelasModel $kelas)
+    {
         $this->formTitle = 'Edit Kelas';
         $this->kelas = $kelas;
         $this->nama = $kelas->nama;
@@ -49,24 +58,30 @@ class Kelas extends Component
         $data = $this->validate();
         if ($this->isUpdate) {
             $this->kelas->update($data);
+            $this->showSuccess('Berhasil mengubah kelas ' . $data['nama']);
         } else {
             KelasModel::create($data);
+            $this->showSuccess('Berhasil menambahkan kelas ' . $data['nama']);
         }
         $this->emit('formModal');
     }
 
-    public function delete(KelasModel $kelas) {
+    public function delete(KelasModel $kelas)
+    {
         $this->kelas = $kelas;
         $this->nama = $kelas->nama;
         $this->emit('deleteModal');
     }
 
-    public function destroy() {
+    public function destroy()
+    {
         $this->kelas->delete();
         $this->emit('deleteModal');
+        $this->showSuccess('Berhasil menambahkan kelas ' . $this->nama);
     }
 
-    private function resetInputFields() {
+    private function resetInputFields()
+    {
         $this->nama = null;
         $this->tingkat = 1;
     }

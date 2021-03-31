@@ -17,7 +17,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Theme style -->
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('plugins/sweetalert2/sweetalert2.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('plugins/notyf/notyf.min.css') }}">
     <livewire:styles />
     @stack('styles')
 </head>
@@ -73,12 +73,40 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <script src="{{ asset('plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
-    <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js') }}"></script>
+    <script src="{{ asset('plugins/notyf/notyf.min.js') }}"></script>
     <livewire:scripts />
     <script>
-        window.livewire.on('showToast', function (type, title, message) {
-            Swal.fire(title, message, type);
-        })
+        const notyf = new Notyf({
+            position: {
+                x: 'right',
+                y: 'top',
+            },
+            types: [{
+                    type: 'error',
+                    icon: {
+                        className: 'fas fa-times',
+                        tagName: 'span',
+                        color: '#fff'
+                    },
+                    dismissible: false
+                },
+                {
+                    type: 'success',
+                    icon: {
+                        className: 'fas fa-check',
+                        tagName: 'span',
+                        color: '#fff'
+                    },
+                    dismissible: false
+                }
+            ]
+        });
+        window.livewire.on('showToast', (type, message) => {
+            notyf.open({
+                type: type,
+                message: message
+            });
+        });
 
     </script>
     @stack('scripts')
