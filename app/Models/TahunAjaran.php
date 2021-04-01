@@ -17,11 +17,18 @@ class TahunAjaran extends Model
         'tahun_akhir',
     ];
 
-    public function getNamaAttribute() {
+    public function getNamaAttribute()
+    {
         return $this->tahun_awal . '/' . $this->tahun_akhir;
     }
 
-    public function getCreatedAtAttribute($value) {
+    public function getCreatedAtAttribute($value)
+    {
         return Carbon::parse($value)->format('H:i, d M Y');
+    }
+
+    public function kelas()
+    {
+        return $this->hasMany(Kelas::class, 'id_tahun_ajaran');
     }
 }

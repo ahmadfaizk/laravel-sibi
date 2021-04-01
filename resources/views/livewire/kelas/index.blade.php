@@ -1,8 +1,20 @@
 <div>
     <div class="card">
-        <div class="card-header text-right">
-            <button wire:click="create" class="btn btn-info"><span class="fas fa-plus mr-2"></span>Kelas
-                Baru</button>
+        <div class="card-header">
+            <div class="d-flex justify-content-between">
+                <div class="form-group form-inline m-0">
+                    <label class="mr-2">Tahun Ajaran</label>
+                    <select class="form-control" wire:model.lazy="filter.id_tahun_ajaran">
+                        @foreach ($listTahunAjaran as $item)
+                        <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                        @endforeach
+                    </select>
+                </div>
+                <button wire:click="create" class="btn btn-info">
+                    <span class="fas fa-plus mr-2"></span>KelasBaru
+                </button>
+            </div>
+
         </div>
         <div class="card-body">
             <x-data-table :items="$items">

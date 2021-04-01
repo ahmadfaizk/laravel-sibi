@@ -9,7 +9,17 @@
                     <div class="row">
                         <div class="col-12">
                             <div class="form-group">
-                                <label class="col-form-label">Jabatan</label>
+                                <label>Tahun Ajaran</label>
+                                <select class="form-control" wire:model.lazy="id_tahun_ajaran">
+                                    @foreach ($listTahunAjaran as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label>Nama Kelas</label>
                                 <input wire:model.lazy="nama" type="text" class="form-control @error('nama') is-invalid @enderror" placeholder="Masukkan Nama Kelas">
                                 @error('nama')<div class="invalid-feedback">{{ $message }}</div>@enderror
                             </div>

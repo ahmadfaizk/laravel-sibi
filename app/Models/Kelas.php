@@ -15,9 +15,16 @@ class Kelas extends Model
     protected $fillable = [
         'nama',
         'tingkat',
+        'id_tahun_ajaran',
     ];
 
-    public function getCreatedAtAttribute($value) {
+    public function getCreatedAtAttribute($value)
+    {
         return Carbon::parse($value)->format('H:i, d M Y');
+    }
+
+    public function mapel()
+    {
+        return $this->belongsToMany(MataPelajaran::class, 'kelas_mapel', 'id_kelas', 'id_mapel');
     }
 }
