@@ -41,8 +41,11 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item {{ set_active(['kelas', 'siswa', 'tahun-ajaran'], 'menu-open') }}">
-                    <a href="#" class="nav-link">
+                @php
+                    $menuDatamaster = ['kelas', 'siswa', 'tahun-ajaran', 'kategori-mapel', 'mata-pelajaran', 'ekstrakurikuler'];
+                @endphp
+                <li class="nav-item {{ set_active($menuDatamaster, 'menu-open') }}">
+                    <a href="#" class="nav-link {{ set_active($menuDatamaster) }}">
                         <i class="nav-icon fas fa-database"></i>
                         <p>
                             Datamaster
@@ -66,6 +69,24 @@
                             <a href="{{ route('siswa') }}" class="nav-link {{ set_active('siswa') }}">
                                 <i class="fas fa-users nav-icon"></i>
                                 <p>Siswa</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('kategori-mapel') }}" class="nav-link {{ set_active('kategori-mapel') }}">
+                                <i class="fas fa-tag nav-icon"></i>
+                                <p>Kategori Mapel</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('mata-pelajaran') }}" class="nav-link {{ set_active('mata-pelajaran') }}">
+                                <i class="fas fa-list nav-icon"></i>
+                                <p>Mata Pelajaran</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('ekstrakurikuler') }}" class="nav-link {{ set_active('ekstrakurikuler') }}">
+                                <i class="fas fa-running nav-icon"></i>
+                                <p>Ekstrakurikuler</p>
                             </a>
                         </li>
                     </ul>

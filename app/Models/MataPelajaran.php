@@ -15,4 +15,8 @@ class MataPelajaran extends Model
         'nama',
         'id_kategori_mapel',
     ];
+
+    public function kategori() {
+        return $this->belongsTo(KategoriMapel::class, 'id_kategori_mapel');
+    }
 }
