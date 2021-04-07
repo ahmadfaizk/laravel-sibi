@@ -22,7 +22,7 @@ class CreateMSiswaTable extends Migration
             $table->string('agama');
             $table->string('alamat_peserta_didik');
             $table->string('tempat_lahir');
-            $table->date('tanggal_lahir');
+            $table->date('tgl_lahir');
             $table->string('pendidikan_sebelumnya');
             $table->string('nama_ayah');
             $table->string('nama_ibu');
@@ -36,16 +36,13 @@ class CreateMSiswaTable extends Migration
             $table->string('alamat_orangtua')->nullable();
             $table->string('file_ijazah')->nullable();
             $table->enum('status', ['aktif', 'alumni', 'keluar'])->default('aktif');
-            $table->integer('masuk_kelas');
-            $table->date('tgl_masuk');
-            $table->timestamps();
-            $table->unsignedBigInteger('id_kelas');
+            $table->integer('masuk_tingkat');
+            $table->unsignedBigInteger('id_kelas')->nullable();
             $table->unsignedBigInteger('id_ta_masuk');
-            $table->unsignedBigInteger('id_ta_keluar')->nullable();
+            $table->timestamps();
 
             $table->foreign('id_kelas')->references('id')->on('m_kelas');
             $table->foreign('id_ta_masuk')->references('id')->on('m_tahun_ajaran');
-            $table->foreign('id_ta_keluar')->references('id')->on('m_tahun_ajaran');
         });
     }
 

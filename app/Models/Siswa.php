@@ -19,7 +19,7 @@ class Siswa extends Model
         'agama',
         'alamat_peserta_didik',
         'tempat_lahir',
-        'tanggal_lahir',
+        'tgl_lahir',
         'pendidikan_sebelumnya',
         'nama_ayah',
         'nama_ibu',
@@ -30,9 +30,9 @@ class Siswa extends Model
         'alamat_wali',
         'foto_masuk',
         'foto_keluar',
-        'masuk_kelas',
+        'masuk_tingkat',
+        'status',
         'id_kelas',
         'id_ta_masuk',
-        'id_ta_keluar',
     ];
 }

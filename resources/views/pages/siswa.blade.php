@@ -5,7 +5,7 @@
     </x-slot>
     <div class="row">
         <div class="col-12">
-            {{-- <livewire:kelas /> --}}
+            <livewire:siswa />
         </div>
     </div>
 </x-app-layout>

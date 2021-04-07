@@ -53,7 +53,7 @@ class KategoriMapel extends Component
     {
         $data = $this->validate();
         if ($this->isUpdate) {
-            $this->ekstrakurikuler->update($data);
+            $this->kategoriMapel->update($data);
             $this->showSuccess('Berhasil mengubah kategori mapel ' . $data['nama']);
         } else {
             KategoriMapelModel::create($data);
