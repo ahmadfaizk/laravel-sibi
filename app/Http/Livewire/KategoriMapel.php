@@ -5,10 +5,13 @@ namespace App\Http\Livewire;
 use App\Http\Livewire\Traits\WithAlert;
 use App\Models\KategoriMapel as KategoriMapelModel;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class KategoriMapel extends Component
 {
     use WithAlert;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $kategoriMapel;
     public $nama;

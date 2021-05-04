@@ -5,10 +5,13 @@ namespace App\Http\Livewire;
 use App\Http\Livewire\Traits\WithAlert;
 use App\Models\TahunAjaran as TahunAjaranModel;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class TahunAjaran extends Component
 {
     use WithAlert;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $tahunAjaran;
     public $nama;

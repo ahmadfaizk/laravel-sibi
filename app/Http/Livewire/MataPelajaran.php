@@ -6,10 +6,13 @@ use App\Http\Livewire\Traits\WithAlert;
 use App\Models\KategoriMapel;
 use App\Models\MataPelajaran as MataPelajaranModel;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class MataPelajaran extends Component
 {
     use WithAlert;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $mataPelajaran;
     public $nama;

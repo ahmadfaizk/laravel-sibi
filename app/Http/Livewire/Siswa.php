@@ -7,10 +7,13 @@ use App\Models\Kelas;
 use App\Models\Siswa as SiswaModel;
 use App\Models\TahunAjaran;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Siswa extends Component
 {
     use WithAlert;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $siswa;
     public $form = [

@@ -5,10 +5,13 @@ namespace App\Http\Livewire;
 use App\Http\Livewire\Traits\WithAlert;
 use App\Models\Ekstrakurikuler as EkstrakurikulerModel;
 use Livewire\Component;
+use Livewire\WithPagination;
 
 class Ekstrakurikuler extends Component
 {
     use WithAlert;
+    use WithPagination;
+    protected $paginationTheme = 'bootstrap';
 
     public $ekstrakurikuler;
     public $nama;
