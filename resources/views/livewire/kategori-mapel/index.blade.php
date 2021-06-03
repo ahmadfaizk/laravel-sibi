@@ -28,6 +28,11 @@
                     </td>
                 </tr>
                 @endforeach
+                @if (count($items) == 0)
+                <tr>
+                    <td class="text-center" colspan="4">Data tidak ditemukan</td>
+                </tr>
+                @endif
             </x-data-table>
         </div>
     </div>

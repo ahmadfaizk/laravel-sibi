@@ -27,4 +27,9 @@ class Kelas extends Model
     {
         return $this->belongsToMany(MataPelajaran::class, 'kelas_mapel', 'id_kelas', 'id_mapel');
     }
+
+    public function siswa()
+    {
+        return $this->belongsToMany(Siswa::class, 'siswa_kelas', 'id_kelas', 'id_siswa');
+    }
 }

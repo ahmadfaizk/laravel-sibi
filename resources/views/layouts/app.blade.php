@@ -74,6 +74,7 @@ scratch. This page gets rid of all links and provides the needed markup only.
     <!-- AdminLTE App -->
     <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
     <script src="{{ asset('plugins/notyf/notyf.min.js') }}"></script>
+    <script src="{{ asset('plugins/alpine.min.js') }}"></script>
     <livewire:scripts />
     <script>
         const notyf = new Notyf({

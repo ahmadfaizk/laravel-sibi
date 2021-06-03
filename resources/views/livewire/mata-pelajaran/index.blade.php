@@ -44,6 +44,11 @@
                     </td>
                 </tr>
                 @endforeach
+                @if (count($items) == 0)
+                <tr>
+                    <td class="text-center" colspan="5">Data tidak ditemukan</td>
+                </tr>
+                @endif
             </x-data-table>
         </div>
         {{-- <div class="card-footer">

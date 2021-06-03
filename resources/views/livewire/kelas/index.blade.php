@@ -22,6 +22,7 @@
                     <th>No.</th>
                     <th>Nama</th>
                     <th>Tingkat</th>
+                    <th>Jumlah Siswa</th>
                     <th>Jumlah Pelajaran</th>
                     <th>Dibuat Pada</th>
                     <th>Aksi</th>
@@ -31,7 +32,8 @@
                     <td>{{ ($items->currentPage()-1) * $items->perPage() + $loop->iteration }}</td>
                     <td>{{ $item->nama }}</td>
                     <td>{{ $item->tingkat }}</td>
-                    <td>{{ $item->mapel->count() }}</td>
+                    <td>{{ $item->siswa()->count() }}</td>
+                    <td>{{ $item->mapel()->count() }}</td>
                     <td>{{ $item->created_at }}</td>
                     <td>
                         <div class="btn-group" role="group" aria-label="Action button">
@@ -45,6 +47,11 @@
                     </td>
                 </tr>
                 @endforeach
+                @if (count($items) == 0)
+                <tr>
+                    <td class="text-center" colspan="7">Data tidak ditemukan</td>
+                </tr>
+                @endif
             </x-data-table>
         </div>
     </div>

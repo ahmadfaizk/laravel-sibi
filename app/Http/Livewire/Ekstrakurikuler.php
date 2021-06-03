@@ -28,7 +28,7 @@ class Ekstrakurikuler extends Component
     public function render(EkstrakurikulerModel $ekstrakurikuler)
     {
         $items = $ekstrakurikuler->when($this->search, function($query, $value) {
-            return $query->where('nama', 'ILIKE', '%'.$value.'%');
+            return $query->where('nama', 'LIKE', '%'.$value.'%');
         });
         return view('livewire.ekstrakurikuler.index', [
             'items' => $items->paginate($this->perPage)

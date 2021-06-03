@@ -37,11 +37,9 @@ class CreateMSiswaTable extends Migration
             $table->string('file_ijazah')->nullable();
             $table->enum('status', ['aktif', 'alumni', 'keluar'])->default('aktif');
             $table->integer('masuk_tingkat');
-            $table->unsignedBigInteger('id_kelas')->nullable();
             $table->unsignedBigInteger('id_ta_masuk');
             $table->timestamps();
 
-            $table->foreign('id_kelas')->references('id')->on('m_kelas');
             $table->foreign('id_ta_masuk')->references('id')->on('m_tahun_ajaran');
         });
     }

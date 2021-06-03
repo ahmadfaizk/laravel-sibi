@@ -28,7 +28,7 @@ class KategoriMapel extends Component
     public function render(KategoriMapelModel $kategoriMapel)
     {
         $items = $kategoriMapel->when($this->search, function($query, $value) {
-            return $query->where('nama', 'ILIKE', '%'.$value.'%');
+            return $query->where('nama', 'LIKE', '%'.$value.'%');
         });
         return view('livewire.kategori-mapel.index', [
             'items' => $items->paginate($this->perPage)

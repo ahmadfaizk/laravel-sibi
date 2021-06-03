@@ -60,13 +60,12 @@ class Siswa extends Component
     public function mount(TahunAjaran $tahunAjaran, Kelas $kelas)
     {
         $this->listTahunAjaran = $tahunAjaran->all();
-        //$this->listKelas = $kelas->all();
     }
 
     public function render(SiswaModel $siswa)
     {
         $items = $siswa->when($this->search, function ($query, $value) {
-            return $query->where('nama_lenkap', 'LIKE', '%' . $value . '%');
+            return $query->where('nama_lengkap', 'LIKE', '%' . $value . '%');
         });
 
         return view('livewire.siswa.index', [
