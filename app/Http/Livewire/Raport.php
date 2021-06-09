@@ -9,6 +9,7 @@ use App\Models\Ketidakhadiran;
 use App\Models\MataPelajaran;
 use App\Models\NilaiEkstrakurikuler;
 use App\Models\NilaiMapel;
+use App\Models\Prestasi;
 use App\Models\Siswa;
 use App\Models\TahunAjaran;
 use Livewire\Component;
@@ -31,6 +32,10 @@ class Raport extends Component
     public $nilaiPengetahuan;
     public $nilaiKetrampilan;
     public $nilaiEkstrakurikuler = [];
+    public $listPrestasi = [];
+
+    public $prestasiDeleted = [];
+    public $ekstrakurikulerDeleted = [];
 
     public $idTahunAjaran;
     public $idKelas;
@@ -79,7 +84,7 @@ class Raport extends Component
         $this->emit('formModal');
     }
 
-    public function edit(Siswa $siswa, $semester, Ketidakhadiran $ketidakhadiran, NilaiMapel $nilaiMapel, NilaiEkstrakurikuler $nilaiEkstrakurikuler)
+    public function edit(Siswa $siswa, $semester, Ketidakhadiran $ketidakhadiran, NilaiMapel $nilaiMapel, NilaiEkstrakurikuler $nilaiEkstrakurikuler, Prestasi $prestasi)
     {
         $this->resetInputFields();
         $this->formTitle = 'Edit Nilai Siswa Semester ' . $semester;
@@ -114,11 +119,21 @@ class Raport extends Component
         foreach ($dataNilaiEkstrakurikuler as $nilai) {
             $this->nilaiEkstrakurikuler[$nilai->id_ekstrakurikuler] = $nilai->predikat;
         }
+        $this->listPrestasi = $prestasi->where('id_kelas', $this->idKelas)
+            ->where('id_siswa', $siswa->id)
+            ->where('id_semester', $semester)
+            ->select('id', 'kegiatan', 'keterangan')
+            ->get()
+            ->toArray();
         $this->emit('formModal');
     }
 
-    public function store(Ketidakhadiran $ketidakhadiran, NilaiMapel $nilaiMapel, NilaiEkstrakurikuler $nilaiEkstrakurikuler)
-    {
+    public function store(
+        Ketidakhadiran $ketidakhadiran,
+        NilaiMapel $nilaiMapel,
+        NilaiEkstrakurikuler $nilaiEkstrakurikuler,
+        Prestasi $prestasi
+    ) {
         $mapelsId = array_keys($this->nilaiPengetahuan);
         foreach ($mapelsId as $id) {
             $nilaiMapel->updateOrCreate(
@@ -159,11 +174,28 @@ class Raport extends Component
             ],
             $this->ketidakhadiran
         );
+        foreach ($this->listPrestasi as $nilai) {
+            $prestasi->updateOrCreate(
+                [
+                    'id' => $nilai['id'],
+                    'id_tahun_ajaran' => $this->idTahunAjaran,
+                    'id_kelas' => $this->idKelas,
+                    'id_siswa' => $this->siswa->id,
+                    'id_semester' => $this->semester,
+                ],
+                [
+                    'kegiatan' => $nilai['kegiatan'],
+                    'keterangan' => $nilai['keterangan'],
+                ]
+            );
+        }
+        $prestasi->whereIn('id', $this->prestasiDeleted)->delete();
         $this->showSuccess('Berhasil mengedit nilai siswa');
         $this->emit('formModal');
     }
 
-    public function deleteEkstrakurikuler(int $id) {
+    public function deleteEkstrakurikuler(int $id)
+    {
         unset($this->nilaiEkstrakurikuler[$id]);
     }
 
@@ -177,6 +209,24 @@ class Raport extends Component
         }
     }
 
+    public function addPrestasi()
+    {
+        $prestasi = [
+            'id' => null,
+            'kegiatan' => '',
+            'keterangan' => '',
+        ];
+        array_push($this->listPrestasi, $prestasi);
+    }
+
+    public function deletePrestasi($index)
+    {
+        if ($this->listPrestasi[$index]['id'] != null) {
+            array_push($this->prestasiDeleted, $this->listPrestasi[$index]['id']);
+        }
+        array_splice($this->listPrestasi, $index, 1);
+    }
+
     private function resetInputFields()
     {
         $this->ketidakhadiran = [
@@ -187,6 +237,9 @@ class Raport extends Component
         $this->nilaiPengetahuan = [];
         $this->nilaiKetrampilan = [];
         $this->nilaiEkstrakurikuler = [];
+        $this->listPrestasi = [];
+        $this->prestasiDeleted = [];
+        $this->ekstrakurikulerDeleted = [];
         foreach ($this->listMapel as $mapel) {
             $this->nilaiPengetahuan[$mapel->id] = 0;
             $this->nilaiKetrampilan[$mapel->id] = 0;

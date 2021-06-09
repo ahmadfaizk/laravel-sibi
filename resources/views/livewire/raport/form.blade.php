@@ -13,7 +13,7 @@
                                 <th>No.</th>
                                 <th>Nama Mata Pelajaran</th>
                                 <th>Nilai Ketrampilan</th>
-                                <th>Nilai Nilai Pengetahuan</th>
+                                <th>Nilai Pengetahuan</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -88,6 +88,44 @@
                                 <td class="text-center" colspan="4">Ekstrakurikuler masih kosong</td>
                             </tr>
                             @endif
+                        </tbody>
+                    </table>
+                    <h5>Prestasi</h5>
+                    <table class="table table-hover text-nowrap mb-2">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Kegiatan</th>
+                                <th>Keterangan</th>
+                                <th>Opsi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($listPrestasi as $item)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>
+                                    <input wire:model="listPrestasi.{{$loop->index}}.kegiatan" type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <input wire:model="listPrestasi.{{$loop->index}}.keterangan" type="text" class="form-control">
+                                </td>
+                                <td>
+                                    <button wire:click="deletePrestasi({{ $loop->index }})" type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
+                                        Hapus</button>
+                                </td>
+                            </tr>
+                            @endforeach
+                            @if (count($listPrestasi) == 0)
+                            <tr>
+                                <td class="text-center" colspan="4">Prestasi masih kosong</td>
+                            </tr>
+                            @endif
+                            <tr>
+                                <td class="text-center" colspan="4">
+                                    <button wire:click="addPrestasi" type="button" class="btn btn-primary">Tambah Prestasi</button>
+                                </td>
+                            </tr>
                         </tbody>
                     </table>
                     <h5>Ketidakhadiran</h5>
