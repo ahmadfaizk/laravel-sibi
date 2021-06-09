@@ -117,7 +117,12 @@ class Raport extends Component
             ->where('id_semester', $semester)
             ->get();
         foreach ($dataNilaiEkstrakurikuler as $nilai) {
-            $this->nilaiEkstrakurikuler[$nilai->id_ekstrakurikuler] = $nilai->predikat;
+            $data = [
+                'id' => $nilai->id_ekstrakurikuler,
+                'nama' => $this->listEksrakurikuler->where('id', $nilai->id_ekstrakurikuler)->first()->nama,
+                'predikat' => $nilai->predikat
+            ];
+            array_push($this->nilaiEkstrakurikuler, $data);
         }
         $this->listPrestasi = $prestasi->where('id_kelas', $this->idKelas)
             ->where('id_siswa', $siswa->id)
@@ -150,21 +155,25 @@ class Raport extends Component
                 ]
             );
         }
-        $ekstrasId = array_keys($this->nilaiEkstrakurikuler);
-        foreach ($ekstrasId as $id) {
+        foreach ($this->nilaiEkstrakurikuler as $nilai) {
             $nilaiEkstrakurikuler->updateOrCreate(
                 [
                     'id_tahun_ajaran' => $this->idTahunAjaran,
                     'id_kelas' => $this->idKelas,
                     'id_siswa' => $this->siswa->id,
                     'id_semester' => $this->semester,
-                    'id_ekstrakurikuler' => $id,
+                    'id_ekstrakurikuler' => $nilai['id'],
                 ],
                 [
-                    'predikat' => $this->nilaiEkstrakurikuler[$id],
+                    'predikat' => $nilai['predikat'],
                 ]
             );
         }
+        $nilaiEkstrakurikuler->where('id_kelas', $this->idKelas)
+            ->where('id_siswa', $this->siswa->id)
+            ->where('id_semester', $this->semester)
+            ->whereIn('id', $this->ekstrakurikulerDeleted)
+            ->delete();
         $ketidakhadiran->updateOrCreate(
             [
                 'id_tahun_ajaran' => $this->idTahunAjaran,
@@ -194,18 +203,32 @@ class Raport extends Component
         $this->emit('formModal');
     }
 
-    public function deleteEkstrakurikuler(int $id)
+    public function deleteEkstrakurikuler($index)
     {
-        unset($this->nilaiEkstrakurikuler[$id]);
+        if ($this->nilaiEkstrakurikuler[$index]['id'] != null) {
+            array_push($this->ekstrakurikulerDeleted, $this->nilaiEkstrakurikuler[$index]['id']);
+        }
+        array_splice($this->nilaiEkstrakurikuler, $index, 1);
     }
 
     public function addEkstrakurikuler()
     {
-        $ekskuls = array_keys($this->nilaiEkstrakurikuler);
-        if (in_array($this->idEkstrakurikuler, $ekskuls)) {
+        $exist = false;
+        foreach ($this->nilaiEkstrakurikuler as $nilai) {
+            if ($nilai['id'] == $this->idEkstrakurikuler) {
+                $exist = true;
+                break;
+            }
+        }
+        if ($exist) {
             $this->showError('Ekstrakurikuler telah ditambahkan');
         } else {
-            $this->nilaiEkstrakurikuler[$this->idEkstrakurikuler] = 'A';
+            $data = [
+                'id' => $this->idEkstrakurikuler,
+                'nama' => $this->listEksrakurikuler->where('id', $this->idEkstrakurikuler)->first()->nama,
+                'predikat' => 'A'
+            ];
+            array_push($this->nilaiEkstrakurikuler, $data);
         }
     }
 

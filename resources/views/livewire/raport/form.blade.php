@@ -62,13 +62,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach (array_keys($nilaiEkstrakurikuler) as $item)
+                            @foreach ($nilaiEkstrakurikuler as $item)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ getEkstrakurikuler($listEksrakurikuler, $item) }}</td>
+                                <td>{{ $item['nama'] }}</td>
                                 <td>
                                     <div class="form-group">
-                                        <select class="form-control" wire:model.lazy="nilaiEkstrakurikuler.{{ $item }}">
+                                        <select class="form-control" wire:model.lazy="nilaiEkstrakurikuler.{{ $loop->index }}.predikat">
                                             <option>A</option>
                                             <option>B</option>
                                             <option>C</option>
@@ -78,7 +78,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <button wire:click="deleteEkstrakurikuler({{$item}})" type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
+                                    <button wire:click="deleteEkstrakurikuler({{$loop->index}})" type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
                                         Hapus</button>
                                 </td>
                             </tr>
