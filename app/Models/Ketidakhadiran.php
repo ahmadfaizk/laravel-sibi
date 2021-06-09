@@ -10,6 +10,7 @@ class Ketidakhadiran extends Model
     use HasFactory;
 
     protected $table = 't_ketidakhadiran';
+    public $timestamps = false;
 
     protected $fillable = [
         'id_tahun_ajaran',

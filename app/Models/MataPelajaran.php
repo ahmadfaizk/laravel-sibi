@@ -19,4 +19,9 @@ class MataPelajaran extends Model
     public function kategori() {
         return $this->belongsTo(KategoriMapel::class, 'id_kategori_mapel');
     }
+
+    public function kelas()
+    {
+        return $this->belongsToMany(Kelas::class, 'kelas_mapel', 'id_mapel', 'id_kelas');
+    }
 }

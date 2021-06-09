@@ -92,6 +92,12 @@
                     </ul>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('raport') }}" class="nav-link {{ set_active('raport') }}">
+                        <i class="fas fa-book nav-icon"></i>
+                        <p>Nilai Raport</p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();
                                   document.getElementById('logout-form').submit();">
                         <i class="nav-icon fas fa-sign-out-alt"></i>

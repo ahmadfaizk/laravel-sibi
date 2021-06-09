@@ -10,6 +10,7 @@ class NilaiMapel extends Model
     use HasFactory;
 
     protected $table = 't_nilai_mapel';
+    public $timestamps = false;
 
     protected $fillable = [
         'id_tahun_ajaran',

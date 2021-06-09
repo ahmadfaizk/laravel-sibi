@@ -52,6 +52,50 @@
                             </div>
                         </div>
                     </div>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="input-group">
+                                <select wire:model.lazy="idSiswa" class="form-control select2bs4" id="select2" data-placeholder="Select siswa">
+                                    @foreach ($listSiswa as $item)
+                                    <option value="{{ $item->id }}">{{ $item->nama_lengkap }}</option>
+                                    @endforeach
+                                </select>
+                                <div class="input-group-append">
+                                    <button wire:click="addSiswa" type="button" class="btn btn-primary">Tambahkan</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12">
+                        <table class="table table-hover text-nowrap">
+                            <thead>
+                                <tr>
+                                    <th>No.</th>
+                                    <th>NIS</th>
+                                    <th>Nama</th>
+                                    <th>Opsi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($siswa as $item)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $item['nomor_nis'] }}</td>
+                                    <td>{{ $item['nama_lengkap'] }}</td>
+                                    <td>
+                                        <button wire:click="deleteSiswa({{ $item['id'] }})" type="button" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
+                                            Hapus</button>
+                                    </td>
+                                </tr>
+                                @endforeach
+                                @if (count($siswa) == 0)
+                                <tr>
+                                    <td class="text-center" colspan="4">Siswa masih kosong</td>
+                                </tr>
+                                @endif
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Batal</button>
@@ -61,3 +105,20 @@
         </div>
     </div>
 </div>
+
+@push('scripts')
+<script>
+    // $(document).ready(function () {
+    //     $('#select2').select2();
+    //     $('#select2').on('change', function (e) {
+    //         var data = $('#select2').select2('val');
+    //         @this.set('siswa', data);
+    //     });
+    //     $('#form-modal').on('show.bs.modal', function () {
+    //         var siswa = @this.siswa;
+    //         $('#select2').select2().val(siswa).trigger('change');
+    //     });
+    // });
+
+</script>
+@endpush

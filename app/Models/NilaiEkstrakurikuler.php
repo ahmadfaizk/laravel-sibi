@@ -11,6 +11,8 @@ class NilaiEkstrakurikuler extends Model
 
     protected $table = 't_nilai_ekstrakurikuler';
 
+    public $timestamps = false;
+
     protected $fillable = [
         'id_tahun_ajaran',
         'id_kelas',

@@ -35,4 +35,9 @@ class Siswa extends Model
         'id_kelas',
         'id_ta_masuk',
     ];
+
+    public function kelas()
+    {
+        return $this->belongsToMany(Kelas::class, 'siswa_kelas', 'id_siswa', 'id_kelas');
+    }
 }
