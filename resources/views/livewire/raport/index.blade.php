@@ -40,8 +40,11 @@
                     <td>
                         <div class="btn-group" role="group" aria-label="Action button">
                             <button wire:click="edit({{ $item->id }}, 1)" type="button"
+                                class="btn btn-success btn-sm"><i class="fas fa-edit"></i>
+                                Semester 1</button>
+                            <button wire:click="edit({{ $item->id }}, 2)" type="button"
                                 class="btn btn-warning btn-sm"><i class="fas fa-edit"></i>
-                                Edit</button>
+                                Semester 2</button>
                         </div>
                     </td>
                 </tr>

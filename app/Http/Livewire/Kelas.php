@@ -40,7 +40,8 @@ class Kelas extends Component
     public $rules = [
         'nama' => 'required|string',
         'tingkat' => 'required|numeric',
-        'id_tahun_ajaran' => 'required|numeric'
+        'id_tahun_ajaran' => 'required|numeric',
+        'siswa' => 'required|array',
     ];
 
     public function mount(TahunAjaran $tahunAjaran, MataPelajaran $mataPelajaran, Siswa $siswa)

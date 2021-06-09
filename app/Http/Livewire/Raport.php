@@ -59,7 +59,7 @@ class Raport extends Component
         $items = $siswa->when($this->search, function ($query, $value) {
             return $query->where('nama_lengkap', 'LIKE', '%' . $value . '%');
         })->whereHas('kelas', function ($query) {
-            $query->where('id', $this->idKelas);
+            $query->where('id', $this->idKelas)->where('id_tahun_ajaran', $this->idTahunAjaran);
         });
         $this->listKelas = $kelas->where('id_tahun_ajaran', $this->idTahunAjaran)->get();
         $this->listMapel = $mataPelajaran->whereHas('kelas', function ($query) {
@@ -164,7 +164,6 @@ class Raport extends Component
     }
 
     public function deleteEkstrakurikuler(int $id) {
-        //$this->nilaiEkstrakurikuler = [];
         unset($this->nilaiEkstrakurikuler[$id]);
     }
 

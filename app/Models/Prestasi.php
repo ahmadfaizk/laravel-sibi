@@ -9,7 +9,8 @@ class Prestasi extends Model
 {
     use HasFactory;
 
-    protected $table = 't_nilai_mapel';
+    protected $table = 't_prestasi';
+    public $timestamps = false;
 
     protected $fillable = [
         'id_tahun_ajaran',
