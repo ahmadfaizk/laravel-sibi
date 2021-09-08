@@ -47,11 +47,6 @@
                             <button wire:click="addEkstrakurikuler" type="button" class="btn btn-primary">Tambahkan</button>
                         </div>
                     </div>
-                    @php
-                        function getEkstrakurikuler($list, $id) {
-                            return $list->where('id', $id)->first()->nama;
-                        }
-                    @endphp
                     <table class="table table-hover text-nowrap">
                         <thead>
                             <tr>
@@ -122,7 +117,7 @@
                             </tr>
                             @endif
                             <tr>
-                                <td class="text-center" colspan="4">
+                                <td class="text-right" colspan="4">
                                     <button wire:click="addPrestasi" type="button" class="btn btn-primary">Tambah Prestasi</button>
                                 </td>
                             </tr>

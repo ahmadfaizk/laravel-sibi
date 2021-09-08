@@ -14,7 +14,6 @@
                     <span class="fas fa-plus mr-2"></span>Kelas Baru
                 </button>
             </div>
-
         </div>
         <div class="card-body">
             <x-data-table :items="$items">
